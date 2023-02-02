@@ -5,6 +5,7 @@ import Main from './Components/Main'
 import AddTask from './Components/AddTask'
 import Home from './Components/Home'
 import ToDoTaskList from './Components/ToDoTaskList'
+import EditProgress from './Components/EditProgress'
 
 function App() {
   const router = createBrowserRouter([
@@ -25,6 +26,10 @@ function App() {
           path: '/taskList',
           loader: () => fetch('http://localhost:8000/lists'),
           element: <ToDoTaskList></ToDoTaskList>,
+        },
+        {
+          path: '/editProgress/:id',
+          element: <EditProgress></EditProgress>,
         },
       ],
     },

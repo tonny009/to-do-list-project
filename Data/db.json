@@ -1,25 +1,25 @@
 {
   "lists": [
     {
-      "id": 1,
-      "title": "Home page design",
-      "status": "Incomplete",
+      "id": 4,
+      "title": "Design done",
+      "status": "Finished",
       "progress": 0,
-      "creatingdate": "26-01-2023"
+      "creatingdate": "02/01/2023, 1:03 PM"
     },
     {
-      "id": 2,
-      "title": "Home Responsive making",
+      "id": 5,
+      "title": "Sever Deploy",
       "status": "Incomplete",
-      "progress": 0,
-      "creatingdate": "26-01-2023"
+      "progress": "80",
+      "creatingdate": "02/01/2023, 1:15 PM"
     },
     {
-      "title": "Test task",
+      "id": 6,
+      "title": "Project Analysis",
       "status": "Incomplete",
-      "progress": 0,
-      "creatingdate": "01/30/2023, 1:43 PM",
-      "id": 3
+      "progress": "30",
+      "creatingdate": "02/01/2023, 1:28 PM"
     }
   ]
 }

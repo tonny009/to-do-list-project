@@ -1,0 +1,16 @@
+.table_design {
+  padding-left: 4px;
+}
+.table_design th {
+  background-color: rgb(169, 135, 248, 0.6);
+  font-style: italic;
+  font-size: larger;
+  color: blanchedalmond;
+  padding: 30px;
+}
+.table_design thead {
+  margin-bottom: 4px;
+}
+.table_row td {
+  background-color: rgb(185, 231, 250, 0.6);
+}

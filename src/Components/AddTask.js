@@ -1,11 +1,13 @@
 import { format } from 'date-fns'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const AddTask = () => {
+  const navigate = useNavigate()
   const handleTaskSubmit = (event) => {
     event.preventDefault()
     const form = event.target
-    const day = form.day.value
+
     const title = form.title.value
     const status = 'Incomplete'
     const progress = 0
@@ -20,6 +22,7 @@ const AddTask = () => {
       body: JSON.stringify(taskDetails),
     }).then(() => {
       console.log('New task added')
+      navigate('/')
     })
   }
   return (
@@ -36,18 +39,11 @@ const AddTask = () => {
             <h1 className="text-center mb-4 font-bold text-xl text-cyan-600">
               Upcoming Task Details
             </h1>
-            <div className="flex flex-col pb-2">
-              <label className="text-xm">Day Number</label>
-              <input
-                type="number"
-                placeholder="Day Number"
-                name="day"
-                className="input ring-1 ring-cyan-800 outline-none w-full max-w-xs focus:ring-teal-900 focus:ring-2 p-4 mt-2"
-              />
-            </div>
+
             <div className="flex flex-col pb-2">
               <label className="text-xm">Task Name</label>
               <input
+                required
                 type="text"
                 placeholder="Write your task name here...."
                 name="title"
@@ -57,6 +53,7 @@ const AddTask = () => {
             <div className="flex flex-col pb-2">
               <label className="text-xm">Task Status</label>
               <input
+                required
                 type="text"
                 placeholder="Write your task name here...."
                 name="status"
@@ -70,6 +67,7 @@ const AddTask = () => {
               <label className="text-xm">Task Progress</label>
               <input
                 type="text"
+                required
                 placeholder="Write your task name here...."
                 name="progress"
                 defaultValue={0 + '%'}

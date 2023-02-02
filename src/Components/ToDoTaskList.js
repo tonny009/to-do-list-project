@@ -1,48 +1,72 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useHistory, useLoaderData } from 'react-router-dom'
+import EachTaskRow from './EachTaskRow'
+import Loading from './Loading'
+import './todolist.css'
 
 const ToDoTaskList = () => {
+  const getAllData = useLoaderData()
+  const [data, setData] = useState(getAllData)
+  const [loading, setLoading] = useState()
+
+  const handleDelete = (id) => {
+    setLoading(true)
+    // console.log('Delete clicked', { id })
+    if (window.confirm('Do you want to remove?')) {
+      fetch(`http://localhost:8000/lists/${id}`, {
+        method: 'DELETE',
+      })
+        .then((res) => {
+          alert('Removed successfully.')
+          window.location.reload()
+          setLoading(false)
+        })
+        .catch((err) => {
+          console.log(err.message)
+        })
+    }
+  }
+
+  if (loading) {
+    return <Loading></Loading>
+  }
+
   return (
     <div>
-      <div className=" w-full h-auto max-w-5xl bg-slate-400 mx-auto ">
-        <div className="text-center text-2xl font-bold mt-8">
-          <h2>List of Your Work</h2>
+      <div className=" w-full h-auto max-w-6xl  mx-auto ">
+        <div className="text-center text-xl text-white font-bold mt-8">
+          <div>
+            <h2 className="text-3xl ">List of Your Work</h2>
+          </div>
+
           {/* Table div------- */}
-          <div className="overflow-x-auto mt-9">
-            <table className="table w-full">
+          <div className="overflow-x-auto mt-9 ">
+            <table className="table w-full table_design ">
               <thead>
                 <tr>
-                  <th></th>
-                  <th>Task</th>
-                  <th>Job</th>
-                  <th>Favorite Color</th>
+                  <th>Task Name</th>
+                  <th>Progress</th>
+                  <th>Status</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th>1</th>
-                  <td>Cy Ganderton</td>
-                  <td>Quality Control Specialist</td>
-                  <td>Blue</td>
-                </tr>
-
-                <tr className="hover">
-                  <th>2</th>
-                  <td>Hart Hagerty</td>
-                  <td>Desktop Support Technician</td>
-                  <td>Purple</td>
-                </tr>
-
-                <tr>
-                  <th>3</th>
-                  <td>Brice Swyre</td>
-                  <td>Tax Accountant</td>
-                  <td>Red</td>
-                </tr>
+                {data.map((task) => (
+                  <EachTaskRow
+                    key={task.id}
+                    task={task}
+                    handleDelete={handleDelete}
+                  ></EachTaskRow>
+                ))}
               </tbody>
             </table>
           </div>
 
-          <div>hi</div>
+          <div>
+            <button className="w-1/2 px-2 py-3 m-4 rounded-xl bg-gradient-to-r text-xl text-white from-green-900 to-purple-900 cursor-pointer duration-200 hover:scale-110">
+              <a href="/">BACK TO HOMEPAGE</a>
+            </button>
+          </div>
         </div>
       </div>
     </div>
