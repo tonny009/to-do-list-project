@@ -2,6 +2,7 @@ import logo from './logo.svg'
 import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Main from './Components/Main'
+import './Components/main.css'
 import AddTask from './Components/AddTask'
 import Home from './Components/Home'
 import ToDoTaskList from './Components/ToDoTaskList'
@@ -34,7 +35,11 @@ function App() {
       ],
     },
   ])
-  return <RouterProvider router={router}></RouterProvider>
+  return (
+    <div className="full-bg">
+      <RouterProvider router={router}></RouterProvider>
+    </div>
+  )
 }
 
 export default App

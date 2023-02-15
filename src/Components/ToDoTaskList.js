@@ -47,7 +47,8 @@ const ToDoTaskList = () => {
                   <th>Task Name</th>
                   <th>Progress</th>
                   <th>Status</th>
-                  <th>Action</th>
+                  <th>Dates</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>

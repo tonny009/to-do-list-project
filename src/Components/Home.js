@@ -22,7 +22,7 @@ const Home = () => {
         <div>
           <Link to="/addTask">
             <button className="btn btn-accent  w-48 h-20 text-xl font-bold p-3 ">
-              Add Work List
+              Add Your Work
             </button>
           </Link>
         </div>

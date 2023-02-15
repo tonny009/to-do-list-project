@@ -1,10 +1,14 @@
-import React from 'react'
+import { differenceInDays, format } from 'date-fns'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { updateTaskData } from './updateParticularTask'
+
+var intervalToDuration = require('date-fns/intervalToDuration')
 
 const EachTaskRow = ({ task, handleDelete }) => {
   const { id, title, status, progress, creatingdate } = task
   const navigate = useNavigate()
+  const [endDate, setEndDate] = useState('')
 
   const handleProgressEdit = (proNumber, id) => {
     navigate(`/editProgress/${id}`)
@@ -21,9 +25,11 @@ const EachTaskRow = ({ task, handleDelete }) => {
         const status = 'Finished'
         const progress = resp.progress
         const creatingdate = resp.creatingdate
+        const end = format(new Date(), 'Pp')
+        setEndDate(end)
 
         const completedTask = { id, title, status, progress, creatingdate }
-        console.log(completedTask)
+        console.log(endDate)
         updateTaskData(completedTask)
       })
       .catch((err) => {
@@ -52,7 +58,7 @@ const EachTaskRow = ({ task, handleDelete }) => {
             }}
             className="btn btn-outline btn-primary w-30 mr-2 border-4"
           >
-            <h3 className="text-black font-bold">Edit Progress</h3>
+            <h3 className="text-black font-extrabold">Edit Progress</h3>
           </button>
         )}
         {status === 'Finished' && (
@@ -63,7 +69,7 @@ const EachTaskRow = ({ task, handleDelete }) => {
             }}
             className="btn btn-outline btn-primary w-30 mr-2 border-4"
           >
-            <h3 className="text-black font-bold">Edit Progress</h3>
+            <h3 className="text-black font-extrabold">Edit Progress</h3>
           </button>
         )}
       </td>
@@ -77,9 +83,9 @@ const EachTaskRow = ({ task, handleDelete }) => {
                 onClick={() => {
                   handleStatus(id)
                 }}
-                className="btn btn-success font-bold w-25"
+                className="btn btn-success font-extrabold w-25 hover:bg-green-600"
               >
-                Completed!
+                Completed ?
               </button>
             </div>
           </>
@@ -93,12 +99,20 @@ const EachTaskRow = ({ task, handleDelete }) => {
         )}
       </td>
       <td>
+        <div className="flex flex-col ">
+          <div className="flex flex-col">
+            <h2>Start :</h2>
+            {creatingdate}
+          </div>
+        </div>
+      </td>
+      <td>
         <div>
           <button
             onClick={() => {
               handleDelete(id)
             }}
-            className="btn btn-error font-bold"
+            className="btn btn-error font-extrabold"
           >
             Delete Task
           </button>
